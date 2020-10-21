@@ -3,12 +3,15 @@ import java.util.ArrayList;
 
 
 public class Algorithm {
-	public Algorithm(){
-		boolean max;
+	boolean max;
+	Player p;
+	public Algorithm(boolean minMax, char color){
+		max = minMax;
+		p = new Player(color);
 	}
 	
 	
-	ArrayList<Board> findSuccessors(Board b, Player p){
+	public ArrayList<Board> findSuccessors(Board b){
 		ArrayList<Board> successors = new ArrayList<Board>();
 		int space = 0;
 		for(int i = 0; i < 8; i++) {
