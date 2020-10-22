@@ -18,22 +18,22 @@ public class Algorithm {
 			for(int j = 0; j < 8; j++) {
 				space++;
 				if(b.gameBoard[i][j] == p.color) {
-					if(j < 6 && b.gameBoard[i][j+1] == p.enemy && b.gameBoard[i][j+2] == " ") {
+					if(j < 6 && b.gameBoard[i][j+1] == p.enemy && b.gameBoard[i][j+2] == ' ') {
 						Board c = b.makeMove(space, space + 2);
 						c.value = c.evaluate();
 						successors.add(c);
 					}
-					if(j > 1 && b.gameBoard[i][j-1] == p.enemy && b.gameBoard[i][j-2] == " ") {
+					if(j > 1 && b.gameBoard[i][j-1] == p.enemy && b.gameBoard[i][j-2] == ' ') {
 						Board c = b.makeMove(space, space - 2);
 						c.value = c.evaluate();
 						successors.add(c);
 					}
-					if(i < 6 && b.gameBoard[i+1][j] == p.enemy && b.gameBoard[i+2][j] == " ") {
+					if(i < 6 && b.gameBoard[i+1][j] == p.enemy && b.gameBoard[i+2][j] == ' ') {
 						Board c = b.makeMove(space, space + 16);
 						c.value = c.evaluate();
 						successors.add(c);
 					}
-					if(i > 1 && b.gameBoard[i-1][j] == p.enemy && b.gameBoard[i-2][j] == " ") {
+					if(i > 1 && b.gameBoard[i-1][j] == p.enemy && b.gameBoard[i-2][j] == ' ') {
 						Board c = b.makeMove(space, space - 16);
 						c.value = c.evaluate();
 						successors.add(c);
