@@ -5,9 +5,11 @@ import java.io.OutputStream;
 
 
 public class Controller {
-
+	Board b;
 	public static void main(String[] args) {
 		
 	}
-
+	
+	
+	
 }

@@ -2,9 +2,9 @@
 public class BoardTree {
 	BoardNode head;
 	Algorithm alg;
-	public BoardTree(Board h){
+	public BoardTree(Board h, char color){
 		head = new BoardNode(h,0);
-		alg = new Algorithm(true,'B');
+		alg = new Algorithm(true,color);
 	}
 	
 	public void fillNodes(BoardNode h, int depth) {
