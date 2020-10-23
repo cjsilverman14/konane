@@ -10,8 +10,6 @@ public class Board {
         enemyValue = 1;
         gameBoard = new char[8][8];
 
-        //intializeBoard();
-        intializeBoard();
     }
 
     //evaluation function
@@ -26,7 +24,7 @@ public class Board {
     }
 
     //fill in the board 
-    public void intializeBoard() {
+    public void initializeBoard() {
         int oddOrEven = 0;
         for(int i = 0; i<gameBoard.length;i++){
             for(int j = 0; j<gameBoard[i].length;j++){
