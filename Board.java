@@ -42,8 +42,11 @@ public class Board {
 
     //print function for the game board 
     public void printBoard() {
-        for(int i = 0; i<gameBoard.length;i++)
-            for(int j = 0; j<gameBoard[i].length;j++)
-                System.out.println(gameBoard[i][j]);
+        for(int i = 0; i<gameBoard.length;i++){
+            for(int j = 0; j<gameBoard[i].length;j++){
+                System.out.print(gameBoard[i][j]);
+            }
+            System.out.println();
+        }
     }
 }
