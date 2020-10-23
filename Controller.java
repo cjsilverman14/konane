@@ -49,14 +49,31 @@ public class Controller {
 				try {
 					System.out.println("Enter opponent removed piece: ");
 					firstMove = keyboard.nextInt();
+					if(firstMove == 1 || firstMove == 28 || firstMove == 37 || firstMove == 64) {
+						break;
+					}
+					else {
+						System.out.println("Invalid First B Move");
+					}
 				}
 				catch(InputMismatchException e) {
-					
+					System.out.println("Invalid Number");
 				}
 			}
 		}
 		else {
-			
+			//Stuff
+			int moveCheck;
+			int secondMove;
+			while(true) {
+				try {
+					System.out.println("Enter opponent removed piece: ");
+					secondMove = keyboard.nextInt();
+				}
+				catch(InputMismatchException e) {
+					System.out.println("Invalid Number");
+				}
+			}
 		}
 		while(b.value > 0 && b.enemyValue > 0) {
 			if(turn) {
