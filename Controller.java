@@ -50,6 +50,9 @@ public class Controller {
 					System.out.println("Enter opponent removed piece: ");
 					firstMove = keyboard.nextInt();
 				}
+				catch(InputMismatchException e) {
+					
+				}
 			}
 		}
 		else {
