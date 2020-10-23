@@ -3,6 +3,7 @@ public class BoardNode {
 	Board b;
 	ArrayList<BoardNode> successors;
 	int depth;
+	int value;
 	public BoardNode(Board bd, int depth) {
 		b = bd;
 		successors = new ArrayList<BoardNode>();
