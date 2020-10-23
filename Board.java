@@ -18,4 +18,11 @@ public class Board {
 		Board c = new Board();
 		return c;
 	}
+	
+	//print function for the game board 
+	public void printBoard() {
+		for(int i = 0; i<gameBoard.length;i++)
+			for(int j = 0; j<gameBoard[i].length;j++)
+				System.out.println(gameBoard[i][j] + " ");
+	}
 }
