@@ -8,10 +8,10 @@ import java.util.InputMismatchException;
 public class Controller {
 	static Scanner keyboard = new Scanner(System.in);
 	
-	//check
 
 	public static void main(String[] args) {
 		Board b = new Board();
+		b.initializeBoard();
 		b.printBoard();
 		Board bNext = new Board();
 		Game g = new Game();
