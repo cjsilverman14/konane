@@ -10,6 +10,7 @@ public class Controller {
 
 	public static void main(String[] args) {
 		Board b = new Board();
+		b.printBoard();
 		Board bNext = new Board();
 		Game g = new Game();
 		boolean turn;
