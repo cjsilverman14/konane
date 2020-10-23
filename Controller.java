@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
 
 public class Controller {
 	static Scanner keyboard = new Scanner(System.in);
+	
+	//check
 
 	public static void main(String[] args) {
 		Board b = new Board();
