@@ -68,12 +68,12 @@ public class Board {
     public Board makeMove(int start, int end) {
         Board c = new Board();
         c.cloneBoard(this);
-        int startX = (start-1) / 8;
-        int startY = (start-1) % 8;
-        int endX = (end-1) / 8;
+        int startX = (start-1) % 8;
+        int startY = (start-1) / 8;
+        int endX = (end-1) % 8;
         int endY = (end-1) / 8;
-        int deltX = endX - startX;
-        int deltY = endY - startY;
+        int deltX = Math.abs(endX - startX);
+        int deltY = Math.abs(endY - startY);
         char mover;
         char removed;
         if(c.gameBoard[startY][startX] == 'W'){
@@ -84,13 +84,76 @@ public class Board {
             mover = 'B';
             removed = 'W';
         }
+        c.gameBoard[startY][startX] = ' ';
         if(deltX > 0){
-            
+            if(startX > endX){
+                c.gameBoard[startY][startX-1] = ' ';
+                if(deltX > 2){
+                    c.gameBoard[startY][startX-3] = ' ';
+                    if(deltX > 4){
+                        c.gameBoard[startY][startX-5] = ' ';
+                        c.gameBoard[startY][startX-6] = mover;
+                    }
+                    else{
+                        c.gameBoard[startY][startX-4] = mover;
+                    }
+                }
+                else{
+                    c.gameBoard[startY][startX-2] = mover;
+                }
+            }
+            else{
+                c.gameBoard[startY][startX+1] = ' ';
+                if(deltX > 2){
+                    c.gameBoard[startY][startX+3] = ' ';
+                    if(deltX > 4){
+                        c.gameBoard[startY][startX+5] = ' ';
+                        c.gameBoard[startY][startX+6] = mover;
+                    }
+                    else{
+                        c.gameBoard[startY][startX+4] = mover;
+                    }
+                }
+                else{
+                    c.gameBoard[startY][startX+2] = mover;
+                }
+            }
         }
         else{
-            
+            if(startY > endY){
+                c.gameBoard[startY-1][startX] = ' ';
+                if(deltY > 2){
+                    c.gameBoard[startY-3][startX] = ' ';
+                    if(deltY > 4){
+                        c.gameBoard[startY-5][startX] = ' ';
+                        c.gameBoard[startY-6][startX] = mover;
+                    }
+                    else{
+                        c.gameBoard[startY-4][startX] = mover;
+                    }
+                }
+                else{
+                    c.gameBoard[startY-2][startX] = mover;
+                }
+            }
+            else{
+                c.gameBoard[startY+1][startX] = ' ';
+                if(deltY > 2){
+                    c.gameBoard[startY+3][startX] = ' ';
+                    if(deltY > 4){
+                        c.gameBoard[startY+5][startX] = ' ';
+                        c.gameBoard[startY+6][startX] = mover;
+                    }
+                    else{
+                        c.gameBoard[startY+4][startX] = mover;
+                    }
+                }
+                else{
+                    c.gameBoard[startY+2][startX] = mover;
+                }
+            }
         }
-        c.move = ("Move piece at space " + start + " to space " + end + ".");
+        c.move = ("Move piece at space " + (startX+1) + ", " + (startY+1) + " to space " + (endX+1) + ", " + (endY+1) + ".");
         return c;
     }
 
@@ -112,7 +175,9 @@ public class Board {
 
     //print function for the game board 
     public void printBoard() {
+        System.out.println(" 12345678");
         for(int i = 0; i<gameBoard.length;i++){
+            System.out.print(i+1);
             for(int j = 0; j<gameBoard[i].length;j++){
                 System.out.print(gameBoard[i][j]);
             }

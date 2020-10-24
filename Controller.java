@@ -94,15 +94,32 @@ public class Controller {
             }
         }
         while(b.value > 0 && b.enemyValue > 0) {
-            if(turn) {
+            b.printBoard();
+            if(!turn) {
+                int startCol = 1;
+                int startRow = 1;
+                int endCol = 1;
+                int endRow = 1;
                 int start;
                 int end;
-                System.out.println("Enter piece start space: ");
                 while(true) {
                     try {
-                        System.out.println("Enter piece start space: ");
-                        start = keyboard.nextInt();
-                        if(start < 65 && start > 0) {
+                        System.out.println("Enter piece start column: ");
+                        startCol = keyboard.nextInt();
+                        if(startCol < 9 && startCol > 0) {
+                        }
+                        else {
+                            System.out.println("Not a valid number");
+                            continue;
+                        }
+                    }
+                    catch(InputMismatchException e) {
+                        System.out.println("Not a number");
+                    }
+                    try {
+                        System.out.println("Enter piece start row: ");
+                        startRow = keyboard.nextInt();
+                        if(startRow < 9 && startRow > 0) {
                             break;
                         }
                         else {
@@ -113,11 +130,25 @@ public class Controller {
                         System.out.println("Not a number");
                     }
                 }
+                start = ((startRow-1)*8) + ((startCol));
                 while(true) {
                     try {
-                        System.out.println("Enter piece end space: ");
-                        end = keyboard.nextInt();
-                        if(end < 65 && end > 0) {
+                        System.out.println("Enter piece end column: ");
+                        endCol = keyboard.nextInt();
+                        if(endCol < 9 && endCol > 0) {
+                        }
+                        else {
+                            System.out.println("Not a valid number");
+                            continue;
+                        }
+                    }
+                    catch(InputMismatchException e) {
+                        System.out.println("Not a number");
+                    }
+                    try {
+                        System.out.println("Enter piece end row: ");
+                        endRow = keyboard.nextInt();
+                        if(endRow < 9 && endRow > 0) {
                             break;
                         }
                         else {
@@ -128,11 +159,15 @@ public class Controller {
                         System.out.println("Not a number");
                     }
                 }
+                end = ((endRow-1)*8) + ((endCol));
                 bNext = b.makeMove(start,end);
+                b = bNext;
                 turn = !turn;
             }
             else {
                 bNext = g.determineMove(b,color, depth);
+                b = bNext;
+                System.out.println();
                 turn = !turn;
             }
         }

@@ -16,6 +16,7 @@ public class BoardNode {
 		ArrayList<BoardNode> newSuccessors = new ArrayList<BoardNode>();
 		for(int i = 0; i < boards.size(); i++) {
 			BoardNode bn = new BoardNode(boards.get(i), depth);
+			bn.value = boards.get(i).value;
 			newSuccessors.add(bn);
 		}
 		this.successors = newSuccessors;

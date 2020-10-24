@@ -7,12 +7,12 @@ public class Game {
 	
 	public Board determineMove(Board b, char color, int depth) {
 		BoardTree bt = new BoardTree(b,color);
-		bt.fillNodes(bt.head,depth);
+		bt.fillNodes(bt.head,depth,true);
 		Board nextBoard = new Board();
 		nextBoard.cloneBoard(b);
 		if(bt.head.successors.size() > 1) {
 			for(BoardNode bN : bt.head.successors) {
-				bN.value = determineMove(bN,true,depth,-1000000,1000000);
+				bN.value = determineMove(bN,false,depth-1,-1000000,1000000);
 			}
 			int x = -1000000;
 			for(int i = 0; i < bt.head.successors.size(); i++) {
@@ -21,6 +21,10 @@ public class Game {
 					x = bt.head.successors.get(i).value;
 				}
 			}
+		}
+		else if(bt.head.successors.size() == 0){
+		    System.out.println("Game Over");
+		    return b;
 		}
 		else {
 			nextBoard = bt.head.successors.get(0).b;
