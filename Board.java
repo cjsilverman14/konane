@@ -12,6 +12,14 @@ public class Board {
 
     }
 
+    public void cloneBoard(Board b){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                this.gameBoard[i][j] = b.gameBoard[i][j];
+            }
+        }
+    }
+    
     //evaluation function
     public int evaluate() {
         return 0;
