@@ -9,6 +9,7 @@ public class Game {
 		BoardTree bt = new BoardTree(b,color);
 		bt.fillNodes(bt.head,depth);
 		Board nextBoard = new Board();
+		nextBoard.cloneBoard(b);
 		if(bt.head.successors.size() > 1) {
 			for(BoardNode bN : bt.head.successors) {
 				bN.value = determineMove(bN,true,depth,-1000000,1000000);
