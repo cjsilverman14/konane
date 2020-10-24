@@ -28,6 +28,7 @@ public class Board {
     //board move function
     public Board makeMove(int start, int end) {
         Board c = new Board();
+        c.cloneBoard(this);
         return c;
     }
 
