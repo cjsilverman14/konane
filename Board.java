@@ -21,8 +21,47 @@ public class Board {
     }
     
     //evaluation function
-    public int evaluate() {
-        return 0;
+    public int evaluate(char color, char enemy) {
+        int moves = 0;
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(this.gameBoard[i][j] == color){
+                    if(j > 1){
+                        if(this.gameBoard[i][j-1] == enemy && this.gameBoard[i][j-2] == ' '){
+                            moves++;
+                            if(j == 7){
+                                moves++;
+                            }
+                        }
+                    }
+                    if(j < 6){
+                        if(this.gameBoard[i][j+1] == enemy && this.gameBoard[i][j+2] == ' '){
+                            moves++;
+                            if(j == 0){
+                                moves++;
+                            }
+                        }
+                    }
+                    if(i > 1){
+                        if(this.gameBoard[i-1][j] == enemy && this.gameBoard[i-2][j] == ' '){
+                            moves++;
+                            if(i == 7){
+                                moves++;
+                            }
+                        }
+                    }
+                    if(i < 6){
+                        if(this.gameBoard[i+1][j] == enemy && this.gameBoard[i+2][j] == ' '){
+                            moves++;
+                            if(i == 0){
+                                moves++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return moves;
     }
 
     //board move function
