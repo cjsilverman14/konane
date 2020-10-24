@@ -65,7 +65,7 @@ public class Controller {
             switch(firstMove){
                 case 1:
                     b.gameBoard[0][0] = ' ';
-                    b.gameBoard[0][1] = ' ';
+                    b.gameBoard[0][1] = ' '; //No real choice needed, both options are symmetrical
                     break;
                 case 28:
                     b.gameBoard[3][3] = ' ';
@@ -75,7 +75,7 @@ public class Controller {
                     break;
                 default:
                     b.gameBoard[7][7] = ' ';
-                    b.gameBoard[7][6] = ' ';
+                    b.gameBoard[7][6] = ' ';//No real choice needed, both options are symmetrical
                     break;
             }
         }
