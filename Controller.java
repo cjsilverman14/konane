@@ -25,12 +25,27 @@ public class Controller {
         branchCount = 0;
         branches = 0;
         staticEval = 0;
+		boolean random = false;
+		while(true){
+			char robotCheck = keyboard.next().charAt(0)
+			if(robotCheck == 'Y'){
+				random = true;
+				break;
+			}
+			else if(robotCheck == 'N'){
+				break;
+			}
+			else{
+				System.out.println("Invalid Selection");
+			}
+		}
         while(true) {//Set depth
             try {
                 System.out.println("Enter a search depth (2-5): ");
                 depth = keyboard.nextInt();
-                if(depth > 1 && depth < 6) {//Get the search depth. 
-                    depth--;//Our depth is set up more like levels, so a depth of 6 needs to be translated to a depth value of 4, 5 to 3, and so on
+                if(depth > 0 && depth < 5) {//Get the search depth. 
+                    //Our depth is set up more like levels, so a depth of 5 needs to be translated to a depth value of 4, 4 to 3, and so on
+                    depth--;
                     break;
                 }
                 else {
@@ -144,7 +159,12 @@ public class Controller {
         }
         while(b.value > 0 && b.enemyValue > 0) {//Until the game is over
             b.printBoard();
-            if(!turn) {//The user's turn
+			if(!turn && random){
+				bNext = RandomAI.getRandomMoves(b,oColor);
+				b = bNext;
+				turn = !turn;
+			}
+            else if(!turn) {//The user's turn
                 int startCol = 1;
                 int startRow = 1;
                 int endCol = 1;
