@@ -12,11 +12,15 @@ public class Controller {
     public static double branches;
     public static int staticEval;
     public static int cutOffs;
+	public static boolean aiWin;
+	public static boolean terminal;
     public static void main(String[] args) {
         Board b = new Board(); //The board variable that will be used for the game
         b.initializeBoard();
         b.printBoard();
         Board bNext;
+		terminal = false;
+		aiWin = false;
         Game g = new Game();
         boolean turn;//Whether it's the AI's turn or not
         int depth;//The depth of the search
@@ -25,6 +29,7 @@ public class Controller {
         branchCount = 0;
         branches = 0;
         staticEval = 0;
+		cutOffs = 0;
 		boolean random = false;
 		while(true){
 			char robotCheck = keyboard.next().charAt(0)
@@ -157,7 +162,7 @@ public class Controller {
                 }
             }
         }
-        while(b.value > 0 && b.enemyValue > 0) {//Until the game is over
+        while(!terminal) {//Until the game is over
             b.printBoard();
 			if(!turn && random){
 				bNext = RandomAI.getRandomMoves(b,oColor);
@@ -255,9 +260,15 @@ public class Controller {
                 System.out.println(b.move);
                 turn = !turn;
             }
+			if(b.enemyValue == 0){
+				aiWin = true;
+			}
+			if(b.value == 0 || b.enemyValue == 0){
+				terminal = true;
+			}
         }
         b.printBoard();
-        if(b.value == 0){
+        if(!aiWin){
             System.out.println("You win!");
         }
         else{
