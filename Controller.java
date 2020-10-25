@@ -25,9 +25,13 @@ public class Controller {
         branchCount = 0;
         branches = 0;
         staticEval = 0;
+        
+        
 		boolean random = false;
 		while(true){
-			char robotCheck = keyboard.next().charAt(0)
+		    
+		    System.out.println("Use random AI (Y/N)?");
+			char robotCheck = keyboard.next().charAt(0);
 			if(robotCheck == 'Y'){
 				random = true;
 				break;
@@ -43,7 +47,7 @@ public class Controller {
             try {
                 System.out.println("Enter a search depth (2-5): ");
                 depth = keyboard.nextInt();
-                if(depth > 0 && depth < 5) {//Get the search depth. 
+                if(depth > 0 && depth < 6) {//Get the search depth. 
                     //Our depth is set up more like levels, so a depth of 5 needs to be translated to a depth value of 4, 4 to 3, and so on
                     depth--;
                     break;
