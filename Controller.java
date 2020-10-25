@@ -20,7 +20,7 @@ public class Controller {
         b.printBoard();
         Board bNext;
 		terminal = false;
-		aiWin = false;
+		aiWin = true;
         Game g = new Game();
         boolean turn;//Whether it's the AI's turn or not
         int depth;//The depth of the search
@@ -262,8 +262,8 @@ public class Controller {
                 System.out.println(b.move);
                 turn = !turn;
             }
-			if(b.enemyValue == 0){
-				aiWin = true;
+			if(b.value == 0){
+				aiWin = false;
 			}
 			if(b.value == 0 || b.enemyValue == 0){
 				terminal = true;
