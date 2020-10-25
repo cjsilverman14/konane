@@ -7,7 +7,7 @@ public class Game {
 
     public Board determineMove(Board b, char color, int depth) {//Find the next move to make
         BoardTree bt = new BoardTree(b,color);//Make a tree
-        bt.fillNodes(bt.head,depth,true);
+        bt.fillNodes(bt.head,depth,true, true);
         Board nextBoard = new Board();
         if(bt.head.successors.size() > 1) {//If there is more than one successor
             for(BoardNode bN : bt.head.successors) {//For each successor

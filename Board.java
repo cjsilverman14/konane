@@ -89,7 +89,7 @@ public class Board {
     }
 
     //board move function
-    public Board makeMove(int start, int end) {
+    public Board makeMove(int start, int end, boolean oneStep) {
         Board c = new Board();
         c.cloneBoard(this);
         int startX = (start-1) % 8;
@@ -177,7 +177,9 @@ public class Board {
                 }
             }
         }
-        c.move = ("Move piece at column " + (startX+1) + ", row " + (startY+1) + " to column " + (endX+1) + ", row " + (endY+1) + ".");
+        if(oneStep){
+            c.move = ("Move piece at column " + (startX+1) + ", row " + (startY+1) + " to column " + (endX+1) + ", row " + (endY+1) + ".");
+        }
         return c;
     }
     

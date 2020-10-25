@@ -27,10 +27,10 @@ public class Controller {
         staticEval = 0;
         while(true) {//Set depth
             try {
-                System.out.println("Enter a search depth (3-6): ");
+                System.out.println("Enter a search depth (2-5): ");
                 depth = keyboard.nextInt();
-                if(depth > 2 && depth < 7) {//Get the search depth. 
-                    depth-=2;//Our depth is set up more like levels, so a depth of 6 needs to be translated to a depth value of 4, 5 to 3, and so on
+                if(depth > 1 && depth < 6) {//Get the search depth. 
+                    depth--;//Our depth is set up more like levels, so a depth of 6 needs to be translated to a depth value of 4, 5 to 3, and so on
                     break;
                 }
                 else {
@@ -206,7 +206,7 @@ public class Controller {
                     try {
                         System.out.println("Enter piece end row: ");
                         endRow = keyboard.nextInt();
-                        if(endRow % 2 != endCol % 2 || (startCol != endCol && startRow != endRow)){
+                        if(endRow % 2 != startRow % 2 || (startCol != endCol && startRow != endRow)){
                             System.out.println("Invalid Move");
                         }
                         if(endRow < 9 && endRow > 0) {
@@ -222,7 +222,7 @@ public class Controller {
                 }
                 end = ((endRow-1)*8) + ((endCol));
                 //Conversion specified above
-                bNext = b.makeMove(start,end);
+                bNext = b.makeMove(start,end, false);
                 b = bNext;
                 turn = !turn;
             }
