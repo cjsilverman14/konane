@@ -22,6 +22,7 @@ public class Board {
     
     //evaluation function
     public int evaluate(char color, char enemy) {
+        Controller.staticEval++;
         int moves = 0;
         enemyValue = 0;
         for(int i = 0; i < 8; i++){
@@ -179,6 +180,8 @@ public class Board {
         c.move = ("Move piece at column " + (startX+1) + ", row " + (startY+1) + " to column " + (endX+1) + ", row " + (endY+1) + ".");
         return c;
     }
+    
+
 
     //fill in the board 
     public void initializeBoard() {
