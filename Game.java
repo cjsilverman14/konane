@@ -44,6 +44,7 @@ public class Game {
                 int value = determineMove(bt.successors.get(i),false,depth-1,alpha,beta);//Find the value of this node
                 moveVal = Math.max(moveVal, value);//Find the max moveVal, and set the alpha value
                 alpha = Math.max(alpha,  moveVal);
+                /*
                 if(beta <= alpha) {//If beta <= alpha, then it can be pruned
                     Controller.cutOffs++;
                     for(int j = i + 1; j < bt.successors.size(); ){
@@ -51,6 +52,7 @@ public class Game {
                     }
                     return moveVal;
                 }
+                */
             }
             return moveVal;
         }
@@ -60,6 +62,7 @@ public class Game {
                 int value = determineMove(bt.successors.get(i),true,depth-1,alpha,beta);//Recursively set value of node
                 moveVal = Math.min(moveVal, value);//Find lowest valued successor
                 beta = Math.min(beta, moveVal);//Set beta value
+                /*
                 if(beta <= alpha) {//If beta <= alpha, this branch can be pruned
                     Controller.cutOffs++;
                     for(int j = i + 1; j < bt.successors.size(); ){
@@ -67,6 +70,7 @@ public class Game {
                     }
                     return moveVal;
                 }
+                */
             }
             return moveVal;
         }
