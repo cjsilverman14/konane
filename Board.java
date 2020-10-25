@@ -23,6 +23,7 @@ public class Board {
     //evaluation function
     public int evaluate(char color, char enemy) {
         int moves = 0;
+        enemyValue = 0;
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 if(this.gameBoard[i][j] == color){
@@ -56,6 +57,28 @@ public class Board {
                             if(i == 0){
                                 moves++;
                             }
+                        }
+                    }
+                }
+                if(this.gameBoard[i][j] == enemy){
+                    if(j > 1){
+                        if(this.gameBoard[i][j-1] == color && this.gameBoard[i][j-2] == ' '){
+                            enemyValue++;
+                        }
+                    }
+                    if(j < 6){
+                        if(this.gameBoard[i][j+1] == color && this.gameBoard[i][j+2] == ' '){
+                            enemyValue++;
+                        }
+                    }
+                    if(i > 1){
+                        if(this.gameBoard[i-1][j] == color && this.gameBoard[i-2][j] == ' '){
+                            enemyValue++;
+                        }
+                    }
+                    if(i < 6){
+                        if(this.gameBoard[i+1][j] == color && this.gameBoard[i+2][j] == ' '){
+                            enemyValue++;
                         }
                     }
                 }
@@ -153,7 +176,7 @@ public class Board {
                 }
             }
         }
-        c.move = ("Move piece at space " + (startX+1) + ", " + (startY+1) + " to space " + (endX+1) + ", " + (endY+1) + ".");
+        c.move = ("Move piece at column " + (startX+1) + ", row " + (startY+1) + " to column " + (endX+1) + ", row " + (endY+1) + ".");
         return c;
     }
 

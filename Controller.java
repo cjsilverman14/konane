@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 
 public class Controller {
     static Scanner keyboard = new Scanner(System.in);
@@ -17,6 +18,7 @@ public class Controller {
         boolean turn;
         int depth;
         char color;
+        char oColor;
         while(true) {
             try {
                 System.out.println("Enter a search depth (1-6): ");
@@ -38,9 +40,11 @@ public class Controller {
             if(color == 'B' || color == 'W') {
                 if(color == 'B') {
                     turn = true;
+                    oColor = 'W';
                 }
                 else {
                     turn = false;
+                    oColor = 'B';
                 }
                 break;
             }
@@ -49,9 +53,9 @@ public class Controller {
             int firstMove;
             while(true) {
                 try {
-                    System.out.println("Enter opponent removed piece: ");
+                    System.out.println("Enter opponent removed piece row/col (1,4,5,8): ");
                     firstMove = keyboard.nextInt();
-                    if(firstMove == 1 || firstMove == 28 || firstMove == 37 || firstMove == 64) {
+                    if(firstMove == 1 || firstMove == 4 || firstMove == 5 || firstMove == 8) {
                         break;
                     }
                     else {
@@ -64,32 +68,67 @@ public class Controller {
             }
             switch(firstMove){
                 case 1:
-                    b.gameBoard[0][0] = ' ';
-                    b.gameBoard[0][1] = ' '; //No real choice needed, both options are symmetrical
-                    break;
-                case 28:
-                    b.gameBoard[3][3] = ' ';
-                    break;
-                case 37:
-                    b.gameBoard[4][4] = ' ';
-                    break;
+                b.gameBoard[0][0] = ' ';
+                b.gameBoard[0][1] = ' '; //No real choice needed, both options are symmetrical
+                System.out.println("I remove the piece from row 1, column 2");
+                break;
+                case 4:
+                b.gameBoard[3][3] = ' ';
+                b.gameBoard[3][4] = ' ';
+                System.out.println("I remove the piece from row 4, column 5");
+                break;
+                case 5:
+                b.gameBoard[4][4] = ' ';
+                b.gameBoard[4][3] = ' ';
+                System.out.println("I remove the piece from row 5, column 4");
+                break;
                 default:
-                    b.gameBoard[7][7] = ' ';
-                    b.gameBoard[7][6] = ' ';//No real choice needed, both options are symmetrical
-                    break;
+                b.gameBoard[7][7] = ' ';
+                b.gameBoard[7][6] = ' ';//No real choice needed, both options are symmetrical
+                System.out.println("I remove the piece from row 8, column 7");
+                break;
             }
         }
         else {
             //Stuff
+            b.gameBoard[3][4] = ' ';
+            System.out.println("I remove the piece from row 4, column 5");
             int moveCheck;
-            int secondMove;
+            char secondMove;
             while(true) {
                 try {
-                    System.out.println("Enter opponent removed piece: ");
-                    secondMove = keyboard.nextInt();
+                    System.out.println("Enter opponent removed piece direction (U/L/D/R): ");
+                    secondMove = keyboard.next().charAt(0);
+                    if(secondMove != 'U'|| secondMove != 'D' || secondMove != 'L' || secondMove != 'D'){
+                        break;
+                    }
                 }
                 catch(InputMismatchException e) {
-                    System.out.println("Invalid Number");
+                    System.out.println("Invalid Direction");
+                }
+            }
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 8; j++){
+                    if(b.gameBoard[i][j] == ' '){
+                        switch(secondMove){
+                            case 'U':
+                            b.gameBoard[i-1][j] = ' ';
+                            break;
+                            case 'D':
+                            b.gameBoard[i+1][j] = ' ';
+                            break;
+                            case 'L':
+                            b.gameBoard[i][j-1] = ' ';
+                            break;
+                            case 'R':
+                            b.gameBoard[i][j+1] = ' ';
+                            break;
+                            default:
+                            break;
+                        }
+                        i = 8;
+                        j = 8;
+                    }
                 }
             }
         }
@@ -167,9 +206,18 @@ public class Controller {
             else {
                 bNext = g.determineMove(b,color, depth);
                 b = bNext;
+                b.value = b.evaluate(color, oColor);
                 System.out.println();
+                System.out.println(b.move);
                 turn = !turn;
             }
+        }
+        b.printBoard();
+        if(b.value == 0){
+            System.out.println("You win!");
+        }
+        else{
+            System.out.println("I win!");
         }
     }
 
