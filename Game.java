@@ -23,7 +23,6 @@ public class Game {
         }
         else if(bt.head.successors.size() == 0){//If there are no successors, the AI has lost
             System.out.println("Game Over");
-            b.value = 0;
             return b;
         }
         else {//If there is only one successor, the AI has no choice
