@@ -12,6 +12,7 @@ public class Board {
         gameBoard = new char[8][8];
     }
 
+    //cloning the board for more use 
     public void cloneBoard(Board b){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
@@ -25,9 +26,11 @@ public class Board {
         Controller.staticEval++;
         int moves = 0;
         enemyValue = 0;
+        //through the whole board calculating the amount of moves
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 if(this.gameBoard[i][j] == color){
+                    //check if it is in the sides if the same color 
                     if(j > 1){
                         if(this.gameBoard[i][j-1] == enemy && this.gameBoard[i][j-2] == ' '){
                             moves++;
@@ -61,6 +64,7 @@ public class Board {
                         }
                     }
                 }
+                //check if it is in the sides if the enemy 
                 if(this.gameBoard[i][j] == enemy){
                     if(j > 1){
                         if(this.gameBoard[i][j-1] == color && this.gameBoard[i][j-2] == ' '){
@@ -92,14 +96,18 @@ public class Board {
     public Board makeMove(int start, int end, boolean oneStep) {
         Board c = new Board();
         c.cloneBoard(this);
+        //starting position 
         int startX = (start-1) % 8;
         int startY = (start-1) / 8;
+        //ending position 
         int endX = (end-1) % 8;
         int endY = (end-1) / 8;
         int deltX = Math.abs(endX - startX);
         int deltY = Math.abs(endY - startY);
         char mover;
         char removed;
+        
+        //check the color of the start position 
         if(c.gameBoard[startY][startX] == 'W'){
             mover = 'W';
             removed = 'B';
@@ -109,6 +117,7 @@ public class Board {
             removed = 'W';
         }
         c.gameBoard[startY][startX] = ' ';
+        //if deltX is positive 
         if(deltX > 0){
             if(startX > endX){
                 c.gameBoard[startY][startX-1] = ' ';
@@ -144,6 +153,7 @@ public class Board {
             }
         }
         else{
+            // if deltaX is negative 
             if(startY > endY){
                 c.gameBoard[startY-1][startX] = ' ';
                 if(deltY > 2){
@@ -185,7 +195,7 @@ public class Board {
     
 
 
-    //fill in the board 
+    //fill in the board with B symbolizing that it is black and W symbolizing white
     public void initializeBoard() {
         int oddOrEven = 0;
         for(int i = 0; i<gameBoard.length;i++){
