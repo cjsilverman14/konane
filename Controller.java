@@ -48,9 +48,9 @@ public class Controller {
 		}
         while(true) {//Set depth
             try {
-                System.out.println("Enter a search depth (2-5): ");
+                System.out.println("Enter a search depth (2-6): ");
                 depth = keyboard.nextInt();
-                if(depth > 0 && depth < 6) {//Get the search depth. 
+                if(depth > 0 && depth < 7) {//Get the search depth. 
                     //Our depth is set up more like levels, so a depth of 5 needs to be translated to a depth value of 4, 4 to 3, and so on
                     depth--;
                     break;
