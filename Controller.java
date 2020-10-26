@@ -270,12 +270,7 @@ public class Controller {
 			}
         }
         b.printBoard();
-        if(!aiWin){
-            System.out.println("You win!");
-        }
-        else{
-            System.out.println("I win!");
-        }
+        System.out.println("Game Over!");
         System.out.println("Average Branching Factor: " + (branchCount / branches));
         System.out.println("Number of Static Evaluations: " + staticEval);
         System.out.println("Number of cutoffs: " + cutOffs);
